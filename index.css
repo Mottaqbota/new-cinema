@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Lexend;
+  box-sizing: border-box;
+  transition: all .2s ease-in-out;
+}
+
+:root {
+  --white: #F5F5F5; 
+  --light-gray: #c7c7c7; 
+  --gray: #585858; 
+  --orange: #FF9109; 
+  --purple: #5D3891; 
+}
+
+button {
+  border: none;
+  padding: 1rem;
+  border-radius: 6px;
+  color: var(--black);
+  outline: solid 2px var(--light-gray);
+}
+button:hover {
+  cursor: pointer;
+  outline: none;
+  color: var(--white);
+  background: var(--orange);
+}
+
+
+.container__cards {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* flex-direction: column; */
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 2rem;
+  width: 100vw;
+  height: 100vh;
+  background: var(--white);
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 240px;
+  gap: 12px;
+  padding: 1rem 0.5rem;
+  border-radius: 6px;
+  /* background: var(--purple); */
+}
+
+/* .card:hover {
+  background: var(--light-gray);
+} */
+
+.title {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;   
+  color: var(--black);
+  font-size: 18px;
+  width: 100%;
+  text-transform: uppercase;
+}
+
+.img-card {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.btn-buy {
+  width: 100%;
+  padding: .8rem;
+  border-radius: 12px;
+}
