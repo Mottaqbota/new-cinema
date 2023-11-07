@@ -66,7 +66,7 @@ function createCards() {
     if (item.isReleased){
       var filmTrue = containerCards.appendChild(card);
     } else if (item.isReleased = false) {
-      filmTrueitem.isReleased = falz\
+      filmTrueitem.isReleased = false
     } else {
       containerCards.innerHTML = `
         <h1>Nenhum Filme em exibição!</h1>
