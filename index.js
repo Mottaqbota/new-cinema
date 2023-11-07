@@ -27,7 +27,6 @@ var arrayCards = [
 showCards()
 function showCards() {
   containerCards.innerHTML = "";
-  for(let i = 0; arrayCards.length; i++)
   if (arrayCards.isReleased = true) {
     arrayCards.forEach(item =>{
       const card = document.createElement('div');
