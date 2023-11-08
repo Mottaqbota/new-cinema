@@ -17,6 +17,23 @@ var arrayCards = [
     qtd: 100,
     price: 32, 
   }, 
+  {
+    title: "Gente Grande 2", 
+    imgURL: "https://br.web.img3.acsta.net/pictures/210/049/21004903_20130510170049514.jpg", 
+    dateExib: "12-08 -> 24-10",
+    isReleased: true,
+    qtd: 100,
+    price: 32, 
+  },
+  {
+    title: "Cruella", 
+    imgURL: "https://lumiere-a.akamaihd.net/v1/images/image_46443ba4.jpeg?region=0,0,540,810", 
+    dateExib: "12-08 -> 24-10",
+    isReleased: true,
+    qtd: 1,
+    price: 32, 
+  },
+
   // {
   //   title: "a", 
   //   imgURL: "a", 
@@ -56,12 +73,15 @@ function createCards() {
     dateExib.innerText = `Tempo em Exibição: ${item.dateExib}`;
     stats.innerText = `Está lançado?: ${item.isReleased}`;
 
-
     btn.addEventListener('click', ()=> {
       buyTicket(item);
     })
     btn.innerText = 'Comprar ticket';
     card.append(img, title, qtd, price, stats, dateExib, btn);
+    if (item.qtd <= 0) {
+      card.classList.add('outStock');
+    }
+
 
     if (item.isReleased){
       containerCards.appendChild(card);
@@ -74,6 +94,13 @@ function createCards() {
 }
 
 function buyTicket(item) {
-  console.log(item.qtd--);
+  if (item.qtd > 0){
+    alert(`Ticket comprado para o Filme: ${item.title}`)
+    item.qtd--;
+  } else {
+    // console.log(card);
+    alert(`Vendas esgotadas para esse filme!`);
+    return
+  } 
   createCards();
 }
