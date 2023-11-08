@@ -46,7 +46,7 @@ button:hover {
 
 .card {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
   flex-direction: column;
   width: 240px;
