@@ -36,7 +36,7 @@ function createCards() {
   containerCards.innerHTML = "";
   arrayCards.forEach(item =>{
     const card = document.createElement('div');
-    const img =014 document.createElement('img');
+    const img = document.createElement('img');
     const title = document.createElement('h1');
     const price = document.createElement('p');
     const qtd = document.createElement('p');
@@ -76,5 +76,4 @@ function createCards() {
 function buyTicket(item) {
   console.log(item.qtd--);
   createCards();
-
 }
