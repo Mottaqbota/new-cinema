@@ -5,7 +5,7 @@ var arrayCards = [
     title: "Five Nights at Freddy's - O pesadelo sem fim", 
     imgURL: "https://www.kinoplex.com.br/filmes/images/cartaz/262x388/five-nights-at-freddys-o-pesadelo-sem-fim.jpg?1693574283",
     dateExib: "20-10 -> 01-11", 
-    isReleased: false,
+    isReleased: true,
     qtd: 100,
     price: 32, 
   },
@@ -31,14 +31,9 @@ var arrayCards = [
   // },
 
 ]
-
-showCards()
-function showCards() {
-  containerCards.innerHTML = "";
-  createCards();
-}
-
+createCards();
 function createCards() {
+  containerCards.innerHTML = "";
   arrayCards.forEach(item =>{
     const card = document.createElement('div');
     const img = document.createElement('img');
@@ -61,12 +56,15 @@ function createCards() {
     dateExib.innerText = `Tempo em Exibição: ${item.dateExib}`;
     stats.innerText = `Está lançado?: ${item.isReleased}`;
 
+
+    btn.addEventListener('click', ()=> {
+      buyTicket(item);
+    })
     btn.innerText = 'Comprar ticket';
-    card.append(img, title, qtd, price, stats, dateExib, btn)
+    card.append(img, title, qtd, price, stats, dateExib, btn);
+
     if (item.isReleased){
-      var filmTrue = containerCards.appendChild(card);
-    } else if (item.isReleased = false) {
-      filmTrueitem.isReleased = false
+      containerCards.appendChild(card);
     } else {
       containerCards.innerHTML = `
         <h1>Nenhum Filme em exibição!</h1>
@@ -74,3 +72,9 @@ function createCards() {
     }
   });
 }
+
+function buyTicket(item) {
+  console.log(item.qtd--);
+  createCards();
+
+} b 
