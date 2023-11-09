@@ -1,12 +1,40 @@
 const containerCards = document.querySelector('.container__cards');
 
+const inputFilm = document.getElementById('input-film');
+const boxSearch = document.querySelector('.box__input');
+inputFilm.addEventListener('input', ()=> {
+  let valueInput = inputFilm.value.toLowerCase();
+
+  arrayCards.forEach((item) => {
+      const box = document.createElement('div');
+      const img = document.createElement('img');
+      const title = document.createElement('h1');
+
+      box.className = 'box-item';
+      img.className = 'img-item';
+
+      img.src = item.imgURL;
+      title.innerText = item.title;
+
+      box.append(img, title);
+    if (item.title.toLowerCase().includes(valueInput)){
+      boxSearch.appendChild(box);
+    } else {
+      return;
+    }
+
+    if (valueInput = ""){
+      boxSearch.removeChild(box);
+    }
+  })
+});
 var arrayCards = [
   {
     title: "Five Nights at Freddy's - O pesadelo sem fim", 
     imgURL: "https://www.kinoplex.com.br/filmes/images/cartaz/262x388/five-nights-at-freddys-o-pesadelo-sem-fim.jpg?1693574283",
     dateExib: "20-10 -> 01-11", 
     isReleased: true,
-    qtd: 100,
+    qtd: 0,
     price: 32, 
   },
   {
@@ -14,7 +42,7 @@ var arrayCards = [
     imgURL: "https://www.kinoplex.com.br/filmes/images/cartaz/262x388/besouro-azul.jpg?1691171104", 
     dateExib: "20-10 -> 01-11",
     isReleased: true,
-    qtd: 100,
+    qtd: 1,
     price: 32, 
   }, 
   {
@@ -22,7 +50,7 @@ var arrayCards = [
     imgURL: "https://br.web.img3.acsta.net/pictures/210/049/21004903_20130510170049514.jpg", 
     dateExib: "12-08 -> 24-10",
     isReleased: true,
-    qtd: 100,
+    qtd: 1,
     price: 32, 
   },
   {
@@ -69,7 +97,7 @@ function createCards() {
     title.innerText = item.title;
     img.src = item.imgURL;
     qtd.innerText = `Disponíveis: ${item.qtd}`;
-    price.innerText = `Valor do Ingresso: ${item.price}`;
+    price.innerText = `Valor do Ingresso: R$${item.price}`;
     dateExib.innerText = `Tempo em Exibição: ${item.dateExib}`;
     stats.innerText = `Está lançado?: ${item.isReleased}`;
 
@@ -78,18 +106,19 @@ function createCards() {
     })
     btn.innerText = 'Comprar ticket';
     card.append(img, title, qtd, price, stats, dateExib, btn);
+    
     if (item.qtd <= 0) {
       card.classList.add('outStock');
+      btn.innerText = "Esgotado!"
     }
-
-
-    if (item.isReleased){
-      containerCards.appendChild(card);
-    } else {
-      containerCards.innerHTML = `
-        <h1>Nenhum Filme em exibição!</h1>
-      `
-    }
+    containerCards.appendChild(card)
+    // if (item.isReleased){
+    //   containerCards.appendChild(card);
+    // } else {
+    //   containerCards.innerHTML = `
+    //     <h1>Nenhum Filme em exibição!</h1>
+    //   `
+    // }
   });
 }
 
@@ -100,7 +129,7 @@ function buyTicket(item) {
   } else {
     // console.log(card);
     alert(`Vendas esgotadas para esse filme!`);
-    return
+    return;
   } 
   createCards();
 }
