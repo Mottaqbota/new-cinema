@@ -5,7 +5,7 @@
   padding: 0;
   font-family: Lexend;
   box-sizing: border-box;
-  transition: all .2s ease-in-out;
+  transition: all .2s ease;
 }
 
 :root {
@@ -27,10 +27,23 @@ button {
 button:hover {
   cursor: pointer;
   outline: none;
+  font-weight: 600;
   color: var(--white);
   background: var(--orange);
 }
 
+input {
+  border: none;
+  padding: .5rem;
+  outline: solid 2px var(--light-gray);
+  border-radius: 6px;
+}
+input:focus {
+  outline: solid 2px var(--orange);
+}
+input:hover {
+  background: var(--white);
+}
 
 .container__cards {
   display: flex;
@@ -51,7 +64,7 @@ button:hover {
   justify-content: flex-start;
   flex-direction: column;
   width: 240px;
-  gap: 12px;
+  gap: 6px;
   padding: 0.5rem;
   border-radius: 6px;
   /* background: var(--purple); */
@@ -66,6 +79,9 @@ button:hover {
   opacity: 0.6;
 }
 
+.card p {
+  font-size: 16px;
+}
 
 /* .card:hover {
   background: var(--light-gray);
@@ -90,4 +106,28 @@ button:hover {
   width: 100%;
   padding: .8rem;
   border-radius: 12px;
+}
+
+
+.box__input {
+  width: 100%;
+  max-height: 50vh;
+}
+
+/* Box Item */
+
+.box-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  padding: .5rem;
+  outline: solid 2px var(--light-white);
+  border-radius: 6px;
+  background: var(--white);
+}
+.img-item {
+  object-fit: contain;
+  width: 50px;
+  height: 50px;
 }
