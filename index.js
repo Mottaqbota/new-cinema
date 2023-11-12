@@ -1,33 +1,28 @@
 const containerCards = document.querySelector('.container__cards');
 
 const inputFilm = document.getElementById('input-film');
-const boxSearch = document.querySelector('.box__input');
-inputFilm.addEventListener('input', ()=> {
+const boxSearch = document.querySelector('.box__search');
+inputFilm.addEventListener('input', () => {
   let valueInput = inputFilm.value.toLowerCase();
+  const searchFilm = arrayCards.filter((item) =>
+    item.title.toLowerCase().includes(valueInput)
+  );
 
-  arrayCards.forEach((item) => {
-      const box = document.createElement('div');
-      const img = document.createElement('img');
-      const title = document.createElement('h1');
+  boxSearch.innerHTML = "";
+  boxSearch.style.display = 'flex';
 
-      box.className = 'box-item';
-      img.className = 'img-item';
+  searchFilm.forEach((item) => {
+    createSearch(item);
+  });
 
-      img.src = item.imgURL;
-      title.innerText = item.title;
-
-      box.append(img, title);
-    if (item.title.toLowerCase().includes(valueInput)){
-      boxSearch.appendChild(box);
-    } else {
-      return;
-    }
-
-    if (valueInput = ""){
-      boxSearch.removeChild(box);
-    }
-  })
+  if (searchFilm.length === 0) {
+    boxSearch.innerHTML = `<p>Nenhum filme encontrado!</p>`;
+  }
 });
+inputFilm.addEventListener('blur', () => {
+  boxSearch.style.display = 'none';
+});
+
 var arrayCards = [
   {
     title: "Five Nights at Freddy's - O pesadelo sem fim", 
@@ -62,6 +57,22 @@ var arrayCards = [
     price: 32, 
   },
 
+  {
+    title: "a", 
+    imgURL: "a", 
+    dateExib: "00-00 -> 00-00",
+    isReleased: true,
+    qtd: 100,
+    price: 32, 
+  },
+  {
+    title: "a", 
+    imgURL: "a", 
+    dateExib: "00-00 -> 00-00",
+    isReleased: true,
+    qtd: 100,
+    price: 32, 
+  },
   // {
   //   title: "a", 
   //   imgURL: "a", 
@@ -76,6 +87,89 @@ var arrayCards = [
   // },
 
 ]
+
+
+
+function createSearch(item) {
+  const box = document.createElement('div');
+  const boxInfo = document.createElement('div');
+  const img = document.createElement('img');
+  const title = document.createElement('h1');
+  const dateExib = document.createElement('p');
+  // const title = document.createElement('h1');
+
+  box.className = 'box-item';
+  img.className = 'img-item';
+  boxInfo.className = 'box-infos';
+
+  img.src = item.imgURL;
+  title.innerText = item.title;
+  dateExib.innerText = item.dateExib;
+  boxInfo.append(title, dateExib);
+
+  box.append(img, boxInfo);
+
+  box.addEventListener('click', (e)=> {
+    notify('sucess', 'Filme clicado!');
+    console.log(e)
+  })
+  boxSearch.appendChild(box);
+}
+
+notify('sucess', 'Sucesso');
+notify('error', 'Erro');
+notify('alert', 'Alerta');
+// notify('error', 'teste');
+function notify(type, msg) {
+  const container__notify = document.querySelector('.notify-container');
+
+  const notify = document.createElement('div');
+  const stats = document.createElement('h1');
+  const info = document.createElement('p');
+  const boxInfos = document.createElement('div');
+  const icon = document.createElement('ion-icon');
+  
+  notify.className = 'notify';
+  boxInfos.className = 'box-stats';
+  icon.className = 'icon-notify';
+  
+  info.innerText = msg;
+  
+  boxInfos.append(stats, info);
+  notify.append(icon, boxInfos);
+
+  switch (type) {
+    case 'success':
+      icon.setAttribute('name', 'checkmark-outline');
+      stats.innerHTML = 'Sucesso';
+      break;
+    case 'error':
+      icon.setAttribute('name', 'close-outline');
+      stats.innerHTML = 'Erro';
+      break;
+    case 'alert':
+      icon.setAttribute('name', 'warning-outline');
+      stats.innerHTML = 'Alerta';
+      break;
+    default:
+      icon.setAttribute('name', 'checkmark-outline');
+      stats.innerText = 'Sucesso';
+      break;
+  }
+  
+  notify.classList.add('--show-notify');
+
+  container__notify.appendChild(notify);
+
+  setTimeout(() => {
+    notify.classList.remove('--show-notify');
+    notify.classList.add('--rem-notify');
+    setTimeout(() => {
+      container__notify.removeChild(notify);
+    }, 400);
+  }, 4000);
+}
+
 createCards();
 function createCards() {
   containerCards.innerHTML = "";
@@ -111,7 +205,7 @@ function createCards() {
       card.classList.add('outStock');
       btn.innerText = "Esgotado!"
     }
-    containerCards.appendChild(card)
+    containerCards.appendChild(card);
     // if (item.isReleased){
     //   containerCards.appendChild(card);
     // } else {
@@ -124,11 +218,11 @@ function createCards() {
 
 function buyTicket(item) {
   if (item.qtd > 0){
-    alert(`Ticket comprado para o Filme: ${item.title}`)
+    notify('sucess', `Ticket comprado para o Filme: ${item.title}`)
     item.qtd--;
   } else {
     // console.log(card);
-    alert(`Vendas esgotadas para esse filme!`);
+    notify('error', `Vendas esgotadas para esse filme!`);
     return;
   } 
   createCards();

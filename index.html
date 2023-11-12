@@ -3,18 +3,45 @@
 
   <head>
     <script type="text/javascript" src="./index.js" defer=""></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <link rel="stylesheet" href="./index.css">
   </head>
 
   <body>
     <div class="box__input">
       <input type="text" placeholder="Pesquisar filme" id="input-film">
+      <div class="box__search">
       <div class="box-item">
         <img src="https://www.kinoplex.com.br/filmes/images/cartaz/262x388/besouro-azul.jpg?1691171104" alt="" class="img-item">
-        <h1>Titlulo filme</h1>
+
+        <div class="box-infos">
+          <h1>Titlulo filme</h1>
+          <p>Tempo em exibição: 20/12 -> 12/20</p>
+        </div>
+      </div>
+      <div class="box-item">
+        <img src="https://www.kinoplex.com.br/filmes/images/cartaz/262x388/besouro-azul.jpg?1691171104" alt="" class="img-item">
+        <div class="box-infos">
+          <h1>Titlulo filme</h1>
+          <p>Tempo em exibição: 20/12 -> 12/20</p>
+        </div>
+      </div>
+
       </div>
     </div>
+    <button onclick="notify('sucess', 'teste')">Teste notify</button>
+    <div class="notify-container"></div>
+    <!-- <div class="notify --show-notify">
+      <ion-icon class="icon-check" name="checkmark-outline"></ion-icon>
+      <div class="box-stats">
+        <h1 class="stats-notify">Sucesso!</h1>
+        <p class="info-notify">Ticket adquirido com sucesso para o filme: Cruella</p>
+      </div>
+    </div> -->
+
     <div class="container__cards"></div>
+    <div class="container__viewFilm"></div>
   </body>
 
 </html>
